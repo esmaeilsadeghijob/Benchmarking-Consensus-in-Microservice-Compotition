@@ -41,17 +41,44 @@ All services communicate using **Spring Cloud OpenFeign** and register with **Eu
 ---
 
 ```
-├── discovery-server/
-│   └── Eureka Server
-├── content-service/
-│   └── Head Microservice
-├── crd-service/
-├── genres-service/
-├── labels-service/
-├── reviews-service/
-├── years-service/
-│   └── Tail Microservice
-├── docker-compose.yml
+
+[Client]
+   |
+   v
+[reviews-service] ---> [genres-service]
+         |                  |
+         v                  v
+   [labels-service]     [years-service]
+         \                /
+          \              /
+           v            v
+        [aggregation-service]
+               |
+               v
+           [Final Output]
+
+
+
+
+microservices/
+├── reviews-service/         # Head
+├── genres-service/          # Middle
+├── labels-service/          # Middle
+├── years-service/           # Middle
+├── aggregation-service/     # Tail
+├── eureka-server/           # Service Discovery
+├── config-server/           # Central Config
+├── gateway-service/         # API Gateway 
+└── docker-compose.yml       # Run all service
+
+
+Java 17
+Spring Boot 3.2.4
+Microservice (SHST)
+SQLite
+Eureka Client
+Spring Boot Actuator
+
 ```
 
 ---

@@ -41,6 +41,25 @@ All services communicate using **Spring Cloud OpenFeign** and register with **Eu
 ---
 
 ```
+
+[Client]
+   |
+   v
+[reviews-service] ---> [genres-service]
+         |                  |
+         v                  v
+   [labels-service]     [years-service]
+         \                /
+          \              /
+           v            v
+        [aggregation-service]
+               |
+               v
+           [Final Output]
+
+
+
+
 ├── discovery-server/
 │   └── Eureka Server
 ├── content-service/

@@ -71,6 +71,14 @@ microservices/
 ├── gateway-service/         # API Gateway 
 └── docker-compose.yml       # Run all service
 
+
+Java 17
+Spring Boot 3.2.4
+Microservice (SHST)
+SQLite
+Eureka Client
+Spring Boot Actuator
+
 ```
 
 ---

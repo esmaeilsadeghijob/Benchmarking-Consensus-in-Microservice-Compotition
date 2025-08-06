@@ -40,6 +40,22 @@ All services communicate using **Spring Cloud OpenFeign** and register with **Eu
 
 ---
 
+```
+├── discovery-server/
+│   └── Eureka Server
+├── content-service/
+│   └── Head Microservice
+├── crd-service/
+├── genres-service/
+├── labels-service/
+├── reviews-service/
+├── years-service/
+│   └── Tail Microservice
+├── docker-compose.yml
+```
+
+---
+
 ## How to Run
 
 Make sure Docker is installed. Then run:

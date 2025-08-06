@@ -16,13 +16,13 @@ This implementation demonstrates the **Single-Head-Single-Tail (SHST)** microser
 
 | Microservice       | Role           | Type        | Description                                                                 |
 |--------------------|----------------|-------------|-----------------------------------------------------------------------------|
-| `content-service`  | 🟢 Entry Point  | **Head**    | Receives the initial request and starts the workflow.                      |
-| `crd-service`      | 🔵 Processor    | Intermediate| Processes content-related metadata.                                        |
-| `genres-service`   | 🔵 Processor    | Intermediate| Adds genre classification to the content.                                  |
-| `labels-service`   | 🔵 Processor    | Intermediate| Attaches label information to the content.                                 |
-| `reviews-service`  | 🔵 Processor    | Intermediate| Fetches and processes user reviews.                                        |
-| `years-service`    | 🔴 Aggregator   | **Tail**    | Consolidates all data and returns the final response.                      |
-| `discovery-server` | ⚙️ Infrastructure | N/A       | Eureka server for dynamic service registration and discovery.              |
+| `content-service`  |  Entry Point  | **Head**    | Receives the initial request and starts the workflow.                      |
+| `crd-service`      |  Processor    | Intermediate| Processes content-related metadata.                                        |
+| `genres-service`   |  Processor    | Intermediate| Adds genre classification to the content.                                  |
+| `labels-service`   |  Processor    | Intermediate| Attaches label information to the content.                                 |
+| `reviews-service`  |  Processor    | Intermediate| Fetches and processes user reviews.                                        |
+| `years-service`    |  Aggregator   | **Tail**    | Consolidates all data and returns the final response.                      |
+| `discovery-server` |  Infrastructure | N/A       | Eureka server for dynamic service registration and discovery.              |
 
 ---
 

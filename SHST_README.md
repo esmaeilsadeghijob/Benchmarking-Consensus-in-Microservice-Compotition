@@ -1,7 +1,6 @@
-## Single Head Single Tail
+## Single Head Single Tail (SHST)
 
-This implementation demonstrates the **Single-Head-Single-Tail (SHST)** microservice composition pattern using Spring Boot and Spring Cloud. The workflow begins with a single head microservice and concludes with a single tail microservice, passing through a linear chain of intermediate services.
-
+This implementation demonstrates the **Single-Head-Single-Tail (SHST)** microservice composition pattern using Spring Boot and Spring Cloud. In this architectural pattern, the workflow begins with a single head microservice and concludes with a single tail microservice. The head microservice initiates the process by performing its designated tasks and passing the output to the next microservice. Each subsequent microservice continues the process until the tail microservice receives the aggregated results, consolidating them to deliver the final output. This pattern provides a straightforward, linear flow of tasks from initiation to completion.
 ---
 
 ## Architectural Pattern: SHST

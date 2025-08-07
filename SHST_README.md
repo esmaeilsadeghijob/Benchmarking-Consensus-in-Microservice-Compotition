@@ -14,15 +14,18 @@ This implementation demonstrates the **Single-Head-Single-Tail (SHST)** microser
 
 ## Microservices and Their Roles
 
-| Microservice       | Role           | Type        | Description                                                                 |
-|--------------------|----------------|-------------|-----------------------------------------------------------------------------|
-| `content-service`  |  Entry Point  | **Head**    | Receives the initial request and starts the workflow.                      |
-| `crd-service`      |  Processor    | Intermediate| Processes content-related metadata.                                        |
-| `genres-service`   |  Processor    | Intermediate| Adds genre classification to the content.                                  |
-| `labels-service`   |  Processor    | Intermediate| Attaches label information to the content.                                 |
-| `reviews-service`  |  Processor    | Intermediate| Fetches and processes user reviews.                                        |
-| `years-service`    |  Aggregator   | **Tail**    | Consolidates all data and returns the final response.                      |
-| `discovery-server` |  Infrastructure | N/A       | Eureka server for dynamic service registration and discovery.              |
+| Microservice        | Role            | Type         | Description                                                                |
+|---------------------|-----------------|--------------|----------------------------------------------------------------------------|
+| `content-service`   | Entry Point     | **Head**     | Receives the initial request and starts the workflow.                      |
+| `artists-service`   | Processor       | Intermediate | Provides artist name associated with each review.                          |
+| `crd-service`       | Processor       | Intermediate | Processes content-related metadata.                                        |
+| `genres-service`    | Processor       | Intermediate | Adds genre classification to the content.                                  |
+| `labels-service`    | Processor       | Intermediate | Attaches label information to the content.                                 |
+| `reviews-service`   | Processor       | Intermediate | Fetches and processes user reviews.                                        |
+| `years-service`     | Aggregator      | **Tail**     | Consolidates all data and returns the final response.                      |
+| `discovery-server`  | Infrastructure  | N/A          | Eureka server for dynamic service registration and discovery.              |
+| `config-server`     | Infrastructure  | N/A          | Centralized configuration management for all services.                     |
+| `gateway-service`   | Infrastructure  | N/A          | API Gateway that routes external requests to appropriate microservices.    |
 
 ---
 

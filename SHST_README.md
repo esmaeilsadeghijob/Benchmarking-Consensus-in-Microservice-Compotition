@@ -66,17 +66,17 @@ All services communicate using **Spring Cloud OpenFeign** and register with **Eu
 
 
 
-microservices/
-├── reviews-service/         # Head
-├── content-service/         # Middle
-├── genres-service/          # Middle
-├── labels-service/          # Middle
-├── years-service/           # Middle
-├── aggregation-service/     # Tail
-├── eureka-server/           # Service Discovery
-├── config-server/           # Central Config
-├── gateway-service/         # API Gateway 
-└── docker-compose.yml       # Run all services
+microservices
+├── reviews-service         # Head
+├── content-service         # Middle
+├── genres-service          # Middle
+├── labels-service          # Middle
+├── years-service           # Middle
+├── aggregation-service     # Tail
+├── eureka-server           # Service Discovery
+├── config-server           # Central Config
+├── gateway-service         # API Gateway 
+└── docker-compose.yml      # Run all services
 
 
 

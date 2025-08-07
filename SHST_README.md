@@ -45,7 +45,10 @@ All services communicate using **Spring Cloud OpenFeign** and register with **Eu
 [Client]
    |
    v
-[reviews-service] ---> [genres-service]
+[reviews-service] ---> [artists-service]
+         |                  |
+         v                  v
+   [genres-service]     [content-service]
          |                  |
          v                  v
    [labels-service]     [years-service]
@@ -62,6 +65,7 @@ All services communicate using **Spring Cloud OpenFeign** and register with **Eu
 
 microservices/
 ├── reviews-service/         # Head
+├── content-service/         # Middle
 ├── genres-service/          # Middle
 ├── labels-service/          # Middle
 ├── years-service/           # Middle
@@ -69,7 +73,8 @@ microservices/
 ├── eureka-server/           # Service Discovery
 ├── config-server/           # Central Config
 ├── gateway-service/         # API Gateway 
-└── docker-compose.yml       # Run all service
+└── docker-compose.yml       # Run all services
+
 
 
 Java 17

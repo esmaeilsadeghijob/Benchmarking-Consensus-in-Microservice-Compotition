@@ -65,9 +65,11 @@ All services communicate using **Spring Cloud OpenFeign** and register with **Eu
 
 
 
-microservices
+microservices/
+├── content-service         # Head
 ├── reviews-service         # Head
-├── content-service         # Middle
+├── artists-service         # Middle
+├── crd-service             # Middle
 ├── genres-service          # Middle
 ├── labels-service          # Middle
 ├── years-service           # Middle

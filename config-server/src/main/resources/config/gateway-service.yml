@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: genres-service
+          uri: lb://genres-service
+          predicates:
+            - Path=/genres/**
+        - id: labels-service
+          uri: lb://labels-service
+          predicates:
+            - Path=/labels/**
+        - id: years-service
+          uri: lb://years-service
+          predicates:
+            - Path=/years/**
+        - id: aggregation-service
+          uri: lb://aggregation-service
+          predicates:
+            - Path=/aggregation/**

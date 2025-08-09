@@ -9,7 +9,7 @@ This project implements a distributed transaction mechanism using the **Two-Phas
 
 ---
 
-## 🏗 Architecture Overview
+## Architecture Overview
 
 ```
 [Client]

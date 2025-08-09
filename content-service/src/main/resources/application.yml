@@ -12,7 +12,7 @@ spring:
     url: jdbc:sqlite:src/main/resources/db/database.sqlite
     driver-class-name: org.sqlite.JDBC
   jpa:
-    database-platform: com.javatar.reviewsservice.config.SQLiteDialect
+    database-platform: com.javatar.contentservice.config.SQLiteDialect
     hibernate:
       ddl-auto: none
     show-sql: true

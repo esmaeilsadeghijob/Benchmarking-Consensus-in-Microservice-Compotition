@@ -12,4 +12,8 @@ public class Genre {
     private Integer reviewid;
     private String genre;
 
+    public Genre(Integer reviewId, String name) {
+        this.reviewid = reviewId;
+        this.genre = name;
+    }
 }

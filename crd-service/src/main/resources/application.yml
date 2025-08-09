@@ -4,6 +4,20 @@ server:
 spring:
   application:
     name: crd-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/crd_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
 
 eureka:
   client:

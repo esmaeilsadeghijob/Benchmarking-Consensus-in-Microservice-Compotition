@@ -9,16 +9,12 @@ import lombok.Data;
 public class Year {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private Integer reviewid;
     private Integer year;
 
     public Year() {}
 
-    public Year(Long id, Integer reviewid, Integer year) {
-        this.id = id;
+    public Year( Integer reviewid, Integer year) {
         this.reviewid = reviewid;
         this.year = year;
     }

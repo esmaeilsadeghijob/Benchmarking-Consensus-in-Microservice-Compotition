@@ -81,7 +81,7 @@ Each participant implements these endpoints to handle transaction phases.
 
 ---
 
-## 🧪 Testing Instructions
+## Testing Instructions
 
 1. Start all services using `docker-compose up`.
 2. Confirm service registration with Eureka.

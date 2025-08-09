@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: content-service
+          uri: lb://content-service
+          predicates:
+            - Path=/content/**
+        - id: reviews-service
+          uri: lb://reviews-service
+          predicates:
+            - Path=/reviews/**
+        - id: artists-service
+          uri: lb://artists-service
+          predicates:
+            - Path=/artists/**
+        - id: crd-service
+          uri: lb://crd-service
+          predicates:
+            - Path=/crd/**
+        - id: genres-service
+          uri: lb://genres-service
+          predicates:
+            - Path=/genres/**
+        - id: labels-service
+          uri: lb://labels-service
+          predicates:
+            - Path=/labels/**
+        - id: years-service
+          uri: lb://years-service
+          predicates:
+            - Path=/years/**
+        - id: aggregation-service
+          uri: lb://aggregation-service
+          predicates:
+            - Path=/aggregation/**

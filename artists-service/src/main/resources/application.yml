@@ -1,0 +1,25 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: artists-service
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
+  datasource:
+    url: jdbc:sqlite:src/main/resources/db/database.sqlite
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    database-platform: com.javatar.artistsservice.config.SQLiteDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true

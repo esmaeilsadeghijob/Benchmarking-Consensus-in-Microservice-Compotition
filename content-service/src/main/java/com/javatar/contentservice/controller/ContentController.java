@@ -1,21 +1,22 @@
 package com.javatar.contentservice.controller;
 
-import com.javatar.contentservice.client.CRDClient;
+import com.javatar.contentservice.model.Content;
+import com.javatar.contentservice.service.ContentService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/content")
+@RequestMapping("/content")
 public class ContentController {
+    private final ContentService service;
 
-    private final CRDClient crdClient;
-
-    public ContentController(CRDClient crdClient) {
-        this.crdClient = crdClient;
+    public ContentController(ContentService service) {
+        this.service = service;
     }
 
-    @GetMapping("/{id}")
-    public String getContent(@PathVariable String id) {
-        String crdData = crdClient.getCRDData(id);
-        return "Content Head → " + crdData;
+    @GetMapping("/{reviewid}")
+    public Content getContent(@PathVariable String reviewid) {
+        return service.getContentByReviewId(reviewid)
+                .orElseThrow(() -> new RuntimeException("Content not found"));
     }
 }
+

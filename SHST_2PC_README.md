@@ -3,7 +3,7 @@
 ---
 
 ```markdown
-# 🔗 SHST Architecture with Two-Phase Commit (2PC)
+#  SHST Architecture with Two-Phase Commit (2PC)
 
 This project implements a distributed transaction mechanism using the **Two-Phase Commit (2PC)** protocol within a **Single-Head-Single-Tail (SHST)** microservices architecture. It ensures atomicity and consistency across services in a linear workflow.
 
@@ -42,7 +42,7 @@ This project implements a distributed transaction mechanism using the **Two-Phas
 
 ---
 
-## ⚙️ Two-Phase Commit Protocol
+## ⚙ Two-Phase Commit Protocol
 
 ### Phase 1: Prepare
 - The coordinator sends a `prepare` request to all participants.
@@ -55,7 +55,7 @@ This project implements a distributed transaction mechanism using the **Two-Phas
 
 ---
 
-## 📦 API Endpoints
+##  API Endpoints
 
 ### Coordinator (`content-service`)
 ```http

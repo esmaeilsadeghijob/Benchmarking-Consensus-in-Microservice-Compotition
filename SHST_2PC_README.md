@@ -91,7 +91,7 @@ Each participant implements these endpoints to handle transaction phases.
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 shst-2pc/
@@ -115,9 +115,8 @@ shst-2pc/
 
 ---
 
-## 🛡 Reliability Considerations
+##  Reliability Considerations
 
 - Temporary data is stored in memory or Redis during `prepare`.
 - Timeout and retry logic can be added for resilience.
 - For long-running workflows, consider Saga or event-driven alternatives.
-- 

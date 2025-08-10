@@ -11,6 +11,27 @@ This project implements a blockchain-style data pipeline using the **Single-Head
 
 ##  Architecture Overview
 
+### Architecture: SHST + Raft Blockchain
+```
+[Client]
+   |
+   v
+[transaction-service]      # Head: initiates a transaction
+   |
+   v
+[validation-service]       # Validates and signs the transaction
+   |
+   v
+[block-builder-service]    # Builds a block from validated data
+   |
+   v
+[raft-node-service]        # Participates in Raft consensus
+   |
+   v
+[ledger-service]           # Tail: stores the final blockchain ledger
+
+```
+
 ### SHST Composition
 
 The system follows a linear flow of microservices:
@@ -33,25 +54,98 @@ The system follows a linear flow of microservices:
 
 ---
 
-##  Microservices
+##  Service Roles & Responsibilities
 
-| Service              | Description                                      |
-|---------------------|--------------------------------------------------|
-| `content-service`    | Starts the data flow with raw content            |
-| `reviews-service`    | Adds user reviews                                |
-| `artists-service`    | Enriches data with artist metadata               |
-| `crd-service`        | Handles copyright and rights data                |
-| `genres-service`     | Adds genre classification                        |
-| `labels-service`     | Adds label and publisher info                    |
-| `years-service`      | Adds release year metadata                       |
-| `aggregation-service`| Aggregates all data into a single payload        |
-| `raft-node-service`  | Runs Raft consensus and commits blocks           |
-| `ledger-service`     | Stores the blockchain ledger                     |
-| `eureka-server`      | Service discovery                                |
-| `config-server`      | Centralized configuration                        |
-| `gateway-service`    | API gateway and routing                          |
+| Service Name         | Role in Architecture                                                                 |
+|----------------------|---------------------------------------------------------------------------------------|
+| `content-service`    | Provides content metadata (e.g. movies, shows, etc.)                                 |
+| `reviews-service`    | Supplies user reviews and ratings                                                    |
+| `artists-service`    | Delivers artist-related data                                                         |
+| `crd-service`        | Handles CRUD operations for shared resources                                         |
+| `genres-service`     | Supplies genre classifications                                                       |
+| `labels-service`     | Provides label or publisher information                                              |
+| `years-service`      | Offers release year data                                                             |
+| `aggregation-service`| Collects data from all above services and builds a block                             |
+| `raft-node-service`  | Receives blocks, runs Raft consensus, and forwards validated blocks                  |
+| `ledger-service`     | Stores finalized blocks in a blockchain ledger                                       |
+| `eureka-server`      | Service discovery for all microservices                                              |
+| `config-server`      | Centralized configuration management                                                 |
+| `gateway-service`    | API gateway for routing external requests to internal services                       |
+| `docker-compose.yml` | Orchestrates all services for local deployment                                       |
 
 ---
+
+## Project Structure
+```
+shst-raft-blockchain/
+├── transaction-service/
+├── validation-service/
+├── block-builder-service/
+├── raft-node-service/
+│   ├── RaftController.java
+│   ├── RaftState.java
+│   └── Block.java
+├── ledger-service/
+│   └── LedgerController.java
+├── common/
+│   └── VoteRequest.java
+│   └── Block.java
+└── docker-compose.yml
+```
+
+```
+microservices/
+├── content-service
+├── reviews-service
+├── artists-service
+├── crd-service
+├── genres-service
+├── labels-service
+├── years-service
+├── aggregation-service
+├── raft-node-service        
+├── ledger-service            
+├── eureka-server
+├── config-server
+├── gateway-service
+└── docker-compose.yml
+
+```
+
+## Microservice Interactions
+
+### 1. Data Flow
+
+- `content-service`, `reviews-service`, `artists-service`, `genres-service`, `labels-service`, `years-service`, and `crd-service`  
+  → Send data to → `aggregation-service`
+
+- `aggregation-service`  
+  → Builds a block and sends it to → `raft-node-service`
+
+- `raft-node-service`  
+  → Runs Raft consensus among nodes  
+  → Sends validated block to → `ledger-service`
+
+- `ledger-service`  
+  → Stores block in blockchain  
+  → Exposes API to view the chain
+
+---
+
+### 2. Infrastructure Flow
+
+- All services register with → `eureka-server`  
+- All configurations are loaded from → `config-server`  
+- External requests go through → `gateway-service`
+
+---
+
+## Architectural Highlights
+
+- **Microservice-based**: Each domain is isolated and independently deployable.
+- **Raft Consensus**: Ensures reliable agreement before storing blocks.
+- **Blockchain Ledger**: Immutable and traceable storage of aggregated data.
+- **Service Discovery & Gateway**: Simplifies routing and scaling.
 
 ##  Block Structure
 

@@ -1,0 +1,137 @@
+﻿version: '3.8'
+
+services:
+
+  eureka-server:
+    image: eurekaserver
+    build: ./eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - shst-net
+
+  config-server:
+    image: configserver
+    build: ./config-server
+    ports:
+      - "8888:8888"
+    depends_on:
+      - eureka-server
+    networks:
+      - shst-net
+
+  gateway-service:
+    image: gateway
+    build: ./gateway-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+      - config-server
+    networks:
+      - shst-net
+
+  content-service:
+    image: content
+    build: ./content-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eureka-server
+      - config-server
+    networks:
+      - shst-net
+
+  reviews-service:
+    image: reviews
+    build: ./reviews-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - content-service
+    networks:
+      - shst-net
+
+  artists-service:
+    image: artists
+    build: ./artists-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - reviews-service
+    networks:
+      - shst-net
+
+  crd-service:
+    image: crd
+    build: ./crd-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - artists-service
+    networks:
+      - shst-net
+
+  genres-service:
+    image: genres
+    build: ./genres-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - crd-service
+    networks:
+      - shst-net
+
+  labels-service:
+    image: labels
+    build: ./labels-service
+    ports:
+      - "8086:8086"
+    depends_on:
+      - genres-service
+    networks:
+      - shst-net
+
+  years-service:
+    image: years
+    build: ./years-service
+    ports:
+      - "8087:8087"
+    depends_on:
+      - labels-service
+    networks:
+      - shst-net
+
+  aggregation-service:
+    image: aggregation
+    build: ./aggregation-service
+    ports:
+      - "8088:8088"
+    depends_on:
+      - years-service
+    networks:
+      - shst-net
+
+  raft-node-service:
+    image: raftnode
+    build: ./raft-node-service
+    ports:
+      - "8090:8090"
+    depends_on:
+      - aggregation-service
+    networks:
+      - shst-net
+
+  ledger-service:
+    image: ledger
+    build: ./ledger-service
+    ports:
+      - "8091:8091"
+    depends_on:
+      - raft-node-service
+    networks:
+      - shst-net
+
+networks:
+  shst-net:
+    driver: bridge
